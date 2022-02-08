@@ -1,4 +1,5 @@
 import React from 'react';
+// import PropTypes from 'prop-types';
 import './Feedback.css';
 
 class Feedback extends React.Component {
@@ -8,7 +9,11 @@ class Feedback extends React.Component {
   };
 
   static propTypes = {
-    //дописати прототипи
+    // good: propTypes.number.isRequired,
+    // bad: this.propTypes.number.isRequired,
+    // neutral: this.propTypes.number.isRequired,
+    // total: this.propTypes.number.isRequired,
+    // persentage: this.propTypes.number.isRequired,
   };
 
   state = {
@@ -17,30 +22,59 @@ class Feedback extends React.Component {
     bad: 0,
   };
 
-  handleIncrement = () => {
+  // handleIncrementBad = () => {
+  //   this.setState(prevState => ({
+  //     [this.state.name]: prevState[this.state.name] + 1,
+  //   }));
+  // };
+
+  handleIncrementGood = () => {
     this.setState(prevState => ({
       good: prevState.good + 1,
+    }));
+  };
+
+  handleIncrementNeutral = () => {
+    this.setState(prevState => ({
       neutral: prevState.neutral + 1,
+    }));
+  };
+
+  handleIncrementBad = () => {
+    this.setState(prevState => ({
       bad: prevState.bad + 1,
     }));
   };
+
+  countTotalFeedback = () => {
+    const { good, neutral, bad } = this.state;
+    const total = good + neutral + bad;
+    return total;
+  };
+
+  // countTotalFeedback = () => {
+  //   this.setState((state, props) => ({
+  //     value: state.value + props.value => {
+  //     console.log({'Total: {}'})}
+  //   }));
+  // };
 
   render() {
     return (
       <div class="Feedback">
         <ul class="Feedback__list">
           <li class="Feedback__item">
-            <button class="Feedback__btn" type="button" onClick={this.handleIncrement}>
+            <button class="Feedback__btn" type="button" onClick={this.handleIncrementGood}>
               Good
             </button>
           </li>
           <li class="Feedback__item">
-            <button class="Feedback__btn" type="button" onClick={this.handleIncrement}>
+            <button class="Feedback__btn" type="button" onClick={this.handleIncrementNeutral}>
               Neutral
             </button>
           </li>
           <li class="Feedback__item">
-            <button class="Feedback__btn" type="button" onClick={this.handleIncrement}>
+            <button class="Feedback__btn" type="button" onClick={this.handleIncrementBad}>
               Bad
             </button>
           </li>
