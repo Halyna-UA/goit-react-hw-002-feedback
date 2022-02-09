@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import FeedbackOptions from './FeedbackOptions';
-import Statistics from './Statistics';
 import Section from './Section';
+import Statistics from './Statistics';
 import Notification from './Notification';
 import { Wrapper } from './Feedback.styled.js';
 
@@ -71,7 +71,7 @@ class Feedback extends Component {
     return (
       <Wrapper>
         <Section title="Please leave feedback" />
-        <FeedbackOptions options={options} onLeaveFeedback={onLeaveFeedback} />
+        <FeedbackOptions options={options} onClick={onLeaveFeedback} />
         <Section title="Statistics">
           <Wrapper>
             {total > 0 ? (
