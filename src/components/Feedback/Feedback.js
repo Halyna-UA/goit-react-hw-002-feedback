@@ -4,7 +4,7 @@ import FeedbackOptions from './FeedbackOptions';
 import Statistics from './Statistics';
 import Section from './Section';
 import Notification from './Notification';
-import './Feedback.css';
+import { Wrapper } from './Feedback.styled.js';
 
 class Feedback extends Component {
   static defaultProps = {
@@ -60,25 +60,20 @@ class Feedback extends Component {
     const percentage = (good * 100) / this.countTotalFeedback();
     return percentage;
   };
-  // countTotalFeedback = () => {
-  //   this.setState((state, props) => ({
-  //     value: state.value + props.value => {
-  //     console.log({'Total: {}'})}
-  //   }));
-  // };
 
   render() {
     const { good, neutral, bad } = this.state;
     const options = Object.keys(this.state);
     const total = this.countTotalFeedback();
     const percentage = this.countPositiveFeedbackPercentage();
+    const onLeaveFeedback = this.handleIncrement;
 
     return (
-      <div>
+      <Wrapper>
         <Section title="Please leave feedback" />
-        <FeedbackOptions options={options} onLeaveFeedback={this.handleIncrement} />
-        <Section title="Statistic">
-          <div>
+        <FeedbackOptions options={options} onLeaveFeedback={onLeaveFeedback} />
+        <Section title="Statistics">
+          <Wrapper>
             {total > 0 ? (
               <Statistics
                 good={good}
@@ -90,9 +85,9 @@ class Feedback extends Component {
             ) : (
               <Notification message="There is no feedback" />
             )}
-          </div>
+          </Wrapper>
         </Section>
-      </div>
+      </Wrapper>
     );
   }
 }
