@@ -1,21 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import FeedbackOptions from './FeedbackOptions';
 import Statistics from './Statistics';
+import Section from './Section';
+import Notification from './Notification';
 import './Feedback.css';
 
-class Feedback extends React.Component {
+class Feedback extends Component {
   static defaultProps = {
     initialValue: 0,
   };
-
-  // static propTypes = {
-  //   good: PropTypes.number.isRequired,
-  //   bad: PropTypes.number.isRequired,
-  //   neutral: PropTypes.number.isRequired,
-  //   total: PropTypes.number.isRequired,
-  //   persentage: PropTypes.number.isRequired,
-  // };
 
   state = {
     good: 0,
@@ -23,11 +17,9 @@ class Feedback extends React.Component {
     bad: 0,
   };
 
-  // const {id, good, neutral, bad} = this.props;
-
   handleIncrement = e => {
-    this.setState(state => ({
-      [e.target.name]: state[e.target.name] + 1,
+    this.setState(prevState => ({
+      [e.target.name]: prevState[e.target.name] + 1,
     }));
   };
 
@@ -82,54 +74,27 @@ class Feedback extends React.Component {
     const percentage = this.countPositiveFeedbackPercentage();
 
     return (
-      <div className="Feedback">
+      <div>
+        <Section title="Please leave feedback" />
         <FeedbackOptions options={options} onLeaveFeedback={this.handleIncrement} />
-
-        <p>Statistics</p>
-        <Statistics good={good} neutral={neutral} bad={bad} total={total} percentage={percentage} />
+        <Section title="Statistic">
+          <div>
+            {total > 0 ? (
+              <Statistics
+                good={good}
+                neutral={neutral}
+                bad={bad}
+                total={total}
+                percentage={percentage}
+              />
+            ) : (
+              <Notification message="There is no feedback" />
+            )}
+          </div>
+        </Section>
       </div>
     );
   }
 }
 
-// const Feedback = () => {
-//   <div>
-//     <p>Please leave feedback</p>
-//     <ul class="list filters__list">
-//       <li class="filters__item">
-//         <button class="filters__btn" type="button">
-//           Good
-//         </button>{' '}
-//       </li>
-//       <li class="filters__item">
-//         <button class="filters__btn" type="button">
-//           Neutral
-//         </button>{' '}
-//       </li>
-//       <li class="filters__item">
-//         <button class="filters__btn" type="button">
-//           Bad
-//         </button>{' '}
-//       </li>
-//     </ul>
-//     <p>Statistics</p>
-//     <ul class="list filters__list">
-//       <li class="filters__item">
-//         <button class="filters__btn" type="button">
-//           Good: 3
-//         </button>{' '}
-//       </li>
-//       <li class="filters__item">
-//         <button class="filters__btn" type="button">
-//           Neutral: 2
-//         </button>{' '}
-//       </li>
-//       <li class="filters__item">
-//         <button class="filters__btn" type="button">
-//           Bad: 2
-//         </button>{' '}
-//       </li>
-//     </ul>
-//   </div>;
-// };
 export default Feedback;
