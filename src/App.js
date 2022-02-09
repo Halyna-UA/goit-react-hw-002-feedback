@@ -4,7 +4,6 @@ import Feedback from './components/Feedback/Feedback';
 export default function App() {
   return (
     <>
-      {/* <h1 className="Feedback__title">Please leave feedback</h1> */}
       <Feedback />
     </>
   );

@@ -70,8 +70,10 @@ class Feedback extends Component {
 
     return (
       <Wrapper>
-        <Section title="Please leave feedback" />
-        <FeedbackOptions options={options} onClick={onLeaveFeedback} />
+        <Section title="Please leave feedback">
+          <FeedbackOptions options={options} onClick={onLeaveFeedback} />
+        </Section>
+
         <Section title="Statistics">
           <Wrapper>
             {total > 0 ? (
