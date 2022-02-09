@@ -1,6 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import FeedbackOptions from './FeedbackOptions';
+import Statistics from './Statistics';
 import './Feedback.css';
 
 class Feedback extends React.Component {
@@ -8,13 +9,13 @@ class Feedback extends React.Component {
     initialValue: 0,
   };
 
-  static propTypes = {
-    good: PropTypes.number.isRequired,
-    bad: PropTypes.number.isRequired,
-    neutral: PropTypes.number.isRequired,
-    total: PropTypes.number.isRequired,
-    persentage: PropTypes.number.isRequired,
-  };
+  // static propTypes = {
+  //   good: PropTypes.number.isRequired,
+  //   bad: PropTypes.number.isRequired,
+  //   neutral: PropTypes.number.isRequired,
+  //   total: PropTypes.number.isRequired,
+  //   persentage: PropTypes.number.isRequired,
+  // };
 
   state = {
     good: 0,
@@ -85,11 +86,7 @@ class Feedback extends React.Component {
         <FeedbackOptions options={options} onLeaveFeedback={this.handleIncrement} />
 
         <p>Statistics</p>
-        <ul className="Statistics__list">
-          <li className="Statistics__item__good">Good: {this.state.good}</li>
-          <li className="Statistics__item__neutral">Neutral: {this.state.neutral}</li>
-          <li className="Statistics__item__bad">Bad: {this.state.bad}</li>
-        </ul>
+        <Statistics good={good} neutral={neutral} bad={bad} total={total} percentage={percentage} />
       </div>
     );
   }
