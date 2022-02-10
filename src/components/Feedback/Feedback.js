@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import FeedbackOptions from './FeedbackOptions';
 import Section from './Section';
 import Statistics from './Statistics';
@@ -23,32 +22,6 @@ class Feedback extends Component {
     }));
   };
 
-  // handleIncrement = () => {
-  //   this.setState(prevState => {
-  //     return {
-  //       name: prevState.name + 1,
-  //     };
-  //   });
-  // };
-
-  // handleIncrementGood = () => {
-  //   this.setState(prevState => ({
-  //     good: prevState.good + 1,
-  //   }));
-  // };
-
-  // handleIncrementNeutral = () => {
-  //   this.setState(prevState => ({
-  //     neutral: prevState.neutral + 1,
-  //   }));
-  // };
-
-  // handleIncrementBad = () => {
-  //   this.setState(prevState => ({
-  //     bad: prevState.bad + 1,
-  //   }));
-  // };
-
   countTotalFeedback = () => {
     const { good, neutral, bad } = this.state;
     const total = good + neutral + bad;
@@ -58,7 +31,7 @@ class Feedback extends Component {
   countPositiveFeedbackPercentage = () => {
     const { good } = this.state;
     const percentage = (good * 100) / this.countTotalFeedback();
-    return percentage;
+    return percentage.toFixed(2);
   };
 
   render() {
@@ -71,7 +44,7 @@ class Feedback extends Component {
     return (
       <Wrapper>
         <Section title="Please leave feedback">
-          <FeedbackOptions options={options} onClick={onLeaveFeedback} />
+          <FeedbackOptions options={options} onLeaveFeedback={onLeaveFeedback} />
         </Section>
 
         <Section title="Statistics">
