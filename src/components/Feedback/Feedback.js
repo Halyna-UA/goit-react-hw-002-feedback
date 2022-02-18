@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-import FeedbackOptions from './FeedbackOptions';
-import Section from './Section';
-import Statistics from './Statistics';
-import Notification from './Notification';
-import { Wrapper } from './Feedback.styled.js';
+import FeedbackOptions from '../FeedbackOptions/FeedbackOptions';
+import Section from '../Section/Section';
+import Statistics from '../Statistics/Statistics';
+import Notification from '../Notification/Notification';
+import { Wrapper } from '../Feedback/Feedback.styled.js';
 
 class Feedback extends Component {
-  static defaultProps = {
-    initialValue: 0,
-  };
 
   state = {
     good: 0,
